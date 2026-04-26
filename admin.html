@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - JEE Leaderboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🎓 JEE Leaderboard</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="admin.html" class="active">Admin</a></li>
+            </ul>
+            <div class="theme-toggle" id="themeToggle">🌙</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Admin Dashboard</h1>
+            <p>Manage Students and Marks</p>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="add-student">Add Student</button>
+            <button class="tab-btn" data-tab="manage-students">Manage Students</button>
+            <button class="tab-btn" data-tab="update-marks">Update Marks</button>
+            <button class="tab-btn" data-tab="batch-management">Batches</button>
+            <button class="tab-btn" data-tab="import-export">Import/Export</button>
+        </div>
+
+        <!-- Add Student Tab -->
+        <div class="tab-content active" id="add-student">
+            <div class="form-card">
+                <h2>Add New Student</h2>
+                <form id="addStudentForm">
+                    <div class="form-group">
+                        <label>Student Name *</label>
+                        <input type="text" id="studentName" required placeholder="Enter student name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Roll Number</label>
+                            <input type="text" id="rollNumber" placeholder="Optional">
+                        </div>
+                        <div class="form-group">
+                            <label>Batch *</label>
+                            <select id="studentBatch" required>
+                                <option value="">Select Batch</option>
+                                <option value="Batch-A">Batch A</option>
+                                <option value="Batch-B">Batch B</option>
+                                <option value="Batch-C">Batch C</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Physics (0-100)</label>
+                            <input type="number" id="physics" min="0" max="100" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Chemistry (0-100)</label>
+                            <input type="number" id="chemistry" min="0" max="100" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Mathematics (0-100)</label>
+                            <input type="number" id="mathematics" min="0" max="100" placeholder="0">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Student</button>
+                </form>
+                <div id="addSuccess" class="success-message" style="display:none;"></div>
+            </div>
+        </div>
+
+        <!-- Manage Students Tab -->
+        <div class="tab-content" id="manage-students">
+            <div class="form-card">
+                <h2>Manage Students</h2>
+                <div class="search-bar">
+                    <input type="text" id="manageSearchInput" placeholder="Search student...">
+                </div>
+                <div class="students-list">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Roll No</th>
+                                <th>Batch</th>
+                                <th>Total Marks</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <!-- Data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Marks Tab -->
+        <div class="tab-content" id="update-marks">
+            <div class="form-card">
+                <h2>Update Student Marks</h2>
+                <form id="updateMarksForm">
+                    <div class="form-group">
+                        <label>Select Student *</label>
+                        <select id="selectStudent" required>
+                            <option value="">Select Student</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Physics (0-100)</label>
+                            <input type="number" id="updatePhysics" min="0" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label>Chemistry (0-100)</label>
+                            <input type="number" id="updateChemistry" min="0" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label>Mathematics (0-100)</label>
+                            <input type="number" id="updateMathematics" min="0" max="100">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Marks</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Batch Management Tab -->
+        <div class="tab-content" id="batch-management">
+            <div class="form-card">
+                <h2>Batch Management</h2>
+                <div class="form-group">
+                    <label>Create New Batch</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="newBatchName" placeholder="e.g., Batch D">
+                        <button id="createBatchBtn" class="btn btn-primary">Create Batch</button>
+                    </div>
+                </div>
+                <div id="batchesList" class="batches-container">
+                    <!-- Batches will be listed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Import/Export Tab -->
+        <div class="tab-content" id="import-export">
+            <div class="form-card">
+                <h2>Data Import/Export</h2>
+                <div class="import-export-section">
+                    <div class="export-section">
+                        <h3>Export Data</h3>
+                        <p>Download all student data as CSV</p>
+                        <button id="exportDataBtn" class="btn btn-secondary">📥 Export to CSV</button>
+                    </div>
+                    <div class="import-section">
+                        <h3>Import Data</h3>
+                        <p>Upload a CSV file to import student data</p>
+                        <input type="file" id="importFile" accept=".csv" class="file-input">
+                        <button id="importDataBtn" class="btn btn-secondary">📤 Import from CSV</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 JEE Leaderboard System.</p>
+        </div>
+    </footer>
+
+    <script src="js/database.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

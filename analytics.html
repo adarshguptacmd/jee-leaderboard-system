@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - JEE Leaderboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🎓 JEE Leaderboard</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="analytics.html" class="active">Analytics</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+            <div class="theme-toggle" id="themeToggle">🌙</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Performance Analytics</h1>
+            <p>Detailed Performance Analysis and Trends</p>
+        </div>
+
+        <div class="analytics-filters">
+            <select id="batchFilterAnalytics" class="filter-select">
+                <option value="">All Batches</option>
+            </select>
+        </div>
+
+        <div class="analytics-grid">
+            <!-- Overall Stats -->
+            <div class="analytics-card">
+                <h3>Class Statistics</h3>
+                <div class="stats-display">
+                    <div class="stat">
+                        <span class="label">Average Score:</span>
+                        <span class="value" id="avgScoreStats">0</span>/300
+                    </div>
+                    <div class="stat">
+                        <span class="label">Highest Score:</span>
+                        <span class="value" id="highestScore">0</span>/300
+                    </div>
+                    <div class="stat">
+                        <span class="label">Lowest Score:</span>
+                        <span class="value" id="lowestScore">0</span>/300
+                    </div>
+                    <div class="stat">
+                        <span class="label">Total Students:</span>
+                        <span class="value" id="totalStudentsStats">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subject-wise Average -->
+            <div class="analytics-card">
+                <h3>Subject-wise Average</h3>
+                <div class="subject-stats">
+                    <div class="subject">
+                        <span>Physics</span>
+                        <div class="bar" id="physicsBar"></div>
+                        <span id="physicsAvg">0</span>/100
+                    </div>
+                    <div class="subject">
+                        <span>Chemistry</span>
+                        <div class="bar" id="chemistryBar"></div>
+                        <span id="chemistryAvg">0</span>/100
+                    </div>
+                    <div class="subject">
+                        <span>Mathematics</span>
+                        <div class="bar" id="mathematicsBar"></div>
+                        <span id="mathematicsAvg">0</span>/100
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3>Score Distribution</h3>
+                <canvas id="scoreDistributionChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Subject Performance</h3>
+                <canvas id="subjectPerformanceChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Top 10 Students</h3>
+                <canvas id="topStudentsChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Score Range Distribution</h3>
+                <canvas id="rangeDistributionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Performance Breakdown -->
+        <div class="analytics-card full-width">
+            <h3>Performance Breakdown</h3>
+            <div class="breakdown-stats">
+                <div class="breakdown-item">
+                    <span class="label">Excellent (270-300):</span>
+                    <span class="value" id="excellent">0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="label">Very Good (240-269):</span>
+                    <span class="value" id="veryGood">0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="label">Good (210-239):</span>
+                    <span class="value" id="good">0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="label">Average (180-209):</span>
+                    <span class="value" id="average">0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="label">Below Average (0-179):</span>
+                    <span class="value" id="belowAverage">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 JEE Leaderboard System.</p>
+        </div>
+    </footer>
+
+    <script src="js/database.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
